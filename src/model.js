@@ -8,8 +8,8 @@ export const questions = [
     id: "goal",
     title: text("這一次，你想探索什麼？", "What would you like to explore?"),
     help: text(
-      "選一個示例方向，作為這段規劃的起點。",
-      "Choose a sample direction to begin your plan.",
+      "選一個想探索的方向，作為這段規劃的起點。",
+      "Choose a direction you want to explore to begin your plan.",
     ),
     options: [
       option("learning", "學習與成長", "Learning and growth"),
@@ -21,8 +21,8 @@ export const questions = [
     id: "stage",
     title: text("你希望從哪個階段開始？", "Where would you like to begin?"),
     help: text(
-      "沒有標準答案，選最適合這次演示的選項。",
-      "There is no right answer. Choose a scenario for this demo.",
+      "選擇最貼近目前狀態的選項，讓計劃從這裡開始。",
+      "Choose the stage that fits your current situation and start your plan from there.",
     ),
     options: [
       option("explore", "還在探索可能性", "Exploring possibilities"),
@@ -220,35 +220,35 @@ export const knowledge = [
     id: "result",
     q: text("報告是怎樣產生的？", "How is the report generated?"),
     a: text(
-      "這是透明的本機規則示例：你的方向決定起步建議，其他選項組成回顧清單。沒有 AI 呼叫、能力診斷、申請資格判定或成功率預測。",
-      "This is a transparent local rules demo: your direction selects a first-step suggestion, and your other choices form a reflection checklist. It makes no AI calls, diagnoses, eligibility decisions, or success predictions.",
+      "你的方向決定起步建議，階段、重點、節奏與回顧方式組成答案摘要。報告會列出選擇依據和規則版本，方便你返回問卷調整計劃。",
+      "Your direction selects a first-step suggestion; your stage, focus, pace, and reflection style form the answer summary. The report includes your choices and a rule version so you can revisit and refine the plan.",
     ),
   },
   {
     id: "privacy",
     q: text("我的答案保存在哪裡？", "Where are my answers stored?"),
     a: text(
-      "只在這個分頁的 sessionStorage 中保存預設選項代碼。重新整理可接續，瀏覽器一般會在分頁工作階段結束時移除；還原分頁可能還原資料，請用頁尾「清除演示資料」明確刪除。語言偏好另外保存在 localStorage。",
-      "Only preset option codes are saved in this tab's sessionStorage. Refresh resumes your draft. Browsers normally clear it when the tab session ends, but restoring tabs may restore storage: use Clear demo data in the footer to explicitly remove it. Your language preference is stored separately in localStorage.",
+      "只在這個分頁的 sessionStorage 中保存預設選項代碼。重新整理可接續，瀏覽器一般會在分頁工作階段結束時移除；還原分頁可能還原資料，請用頁尾「清除規劃資料」明確刪除。語言偏好另外保存在 localStorage。",
+      "Only preset option codes are saved in this tab's sessionStorage. Refresh resumes your draft. Browsers normally clear it when the tab session ends, but restoring tabs may restore storage: use Clear planning data in the footer to explicitly remove it. Your language preference is stored separately in localStorage.",
     ),
   },
   {
     id: "check",
     q: text("準備度分數代表什麼？", "What does the readiness score mean?"),
     a: text(
-      "每題「準備好了」得兩分、「部分準備」得一分、「還沒開始」得零分，再換算為百分比。它只方便你看見待準備事項，並不是經過驗證的心理或專業評估量表。",
-      "Ready scores two points, Partly ready scores one, and Not yet scores zero; the total is converted to a percentage. It highlights preparation tasks and is not a validated psychological or professional assessment.",
+      "每題「準備好了」得兩分、「部分準備」得一分、「還沒開始」得零分，總分換算為百分比。五個維度按各自的題目計算，結果會列出可以繼續準備的事項，幫助你安排下一步。",
+      "Ready scores two points, Partly ready scores one, and Not yet scores zero. The total becomes a percentage, and each of the five dimensions uses its own prompts. The result lists preparation tasks to help you choose what to do next.",
     ),
   },
   {
     id: "workspace",
     q: text(
-      "工作台會聯絡真實顧問嗎？",
-      "Does the workspace contact an adviser?",
+      "如何用工作台回顧進展？",
+      "How can I review progress in the workspace?",
     ),
     a: text(
-      "不會。工作台展示虛構的項目編號，以及你選擇儲存的本機演示結果。更改狀態和匯出只在本機運作，沒有郵件、訊息或雲端資料庫。",
-      "No. The workspace shows fictional project IDs and local demo results you choose to save. Status changes and exports stay local; there is no email, messaging, or cloud database.",
+      "完成評估後，將起步計劃加入工作台，按「待探索」「回顧中」「已完成」更新狀態。工作台也會顯示本次準備度；你可以篩選記錄或匯出 JSON，留下規劃筆記。",
+      "After completing an assessment, add your plan to the workspace and update its status through New, Reviewing, and Done. Your readiness result appears there too. Filter records or export JSON to keep a planning note.",
     ),
   },
 ];

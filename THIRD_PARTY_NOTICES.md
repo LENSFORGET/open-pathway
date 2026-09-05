@@ -12,8 +12,6 @@ The project MIT license covers original project contributions. Third-party packa
 
 Fontsource packages distribute the font files and their upstream license notices. Inspect the exact license files in installed dependencies when redistributing them. `scripts/prepare-sites-build.mjs` also copies the font and icon licenses into `dist/client/licenses` for hosted builds. The runtime React license is included there as well.
 
-`public/images/pathway.svg` is an original geometric illustration created for this project. It contains only SVG geometry and gradients: no photographs, embedded raster images, external resources, people, company marks, or QR codes. It is released under this project's MIT license. No other external visual assets are bundled.
+`public/images/pathway.svg` is an original geometric illustration created for this project using SVG geometry and gradients. Its archway and winding path express the theme of exploration. It is released under this project's MIT license.
 
-All planning scenarios, advice text, record identifiers, and sample states are authored demonstration content. There are no attributed testimonials, customer case studies, institutional endorsements, or real contact records.
-
-Tool and package names in technical documentation are factual dependency acknowledgments and do not imply sponsorship.
+The questionnaire, planning suggestions, field notes, and built-in reading-plan example are authored project content, released under the project MIT license.

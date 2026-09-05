@@ -2,7 +2,7 @@
   "name": "open-pathway",
   "version": "1.0.0",
   "private": true,
-  "description": "A bilingual, privacy-first planning experience and open-source frontend portfolio.",
+  "description": "A bilingual personal planning app for exploring goals, creating action plans, and reviewing progress.",
   "license": "MIT",
   "type": "module",
   "engines": {

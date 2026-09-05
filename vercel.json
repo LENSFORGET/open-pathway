@@ -6,9 +6,8 @@
   "rewrites": [
     { "source": "/assessment", "destination": "/index.html" },
     { "source": "/readiness", "destination": "/index.html" },
-    { "source": "/renewal-check", "destination": "/index.html" },
     { "source": "/qa", "destination": "/index.html" },
-    { "source": "/staff", "destination": "/index.html" }
+    { "source": "/workspace", "destination": "/index.html" }
   ],
   "headers": [
     {

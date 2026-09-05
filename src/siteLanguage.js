@@ -25,7 +25,6 @@ export function getInitialSiteLanguage({
   storage = typeof window !== "undefined" ? window.localStorage : null,
   languages = typeof navigator !== "undefined" ? navigator.languages : [],
   language = typeof navigator !== "undefined" ? navigator.language : "",
-  legacyLanguage = null,
 } = {}) {
   const queryLanguage = normalizeSiteLanguage(
     new URLSearchParams(search).get("lang"),
@@ -34,9 +33,6 @@ export function getInitialSiteLanguage({
 
   const storedLanguage = readStoredLanguage(storage);
   if (storedLanguage) return storedLanguage;
-
-  const legacy = normalizeSiteLanguage(legacyLanguage);
-  if (legacy) return legacy;
 
   const browserLocale =
     Array.isArray(languages) && languages.length ? languages[0] : language;

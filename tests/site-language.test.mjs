@@ -43,14 +43,17 @@ test("saved language overrides browser language", () => {
   );
 });
 
-test("legacy assessment language is used before browser language", () => {
+test("unavailable storage falls back to the browser language", () => {
   assert.equal(
     getInitialSiteLanguage({
-      storage: storageWith(null),
-      legacyLanguage: "en",
+      storage: {
+        getItem: () => {
+          throw new Error("Storage blocked");
+        },
+      },
       languages: ["zh-HK"],
     }),
-    "en",
+    "tc",
   );
 });
 

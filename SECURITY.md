@@ -1,7 +1,7 @@
 # Security
 
-This release is a static educational demo. The workspace is intentionally public and contains only fictional or local demo state. It has no authentication boundary and must not be used for real customer records.
+Open Pathway processes preset planning choices in the browser. Drafts, saved plans, and readiness answers use tab-scoped session storage; language preferences use local storage. The footer provides an explicit control to clear the application's saved data. JSON exports are managed by the person downloading them.
 
-If a vulnerability or accidental disclosure is found, do not paste secrets or personal data into a public issue. Use the repository's private vulnerability reporting feature if the repository owner has enabled it. Otherwise, open an issue requesting a private reporting channel without including sensitive details.
+Report vulnerabilities through [GitHub's private reporting form](https://github.com/LENSFORGET/open-pathway/security/advisories/new). Include the affected version, reproducible steps, and a minimal example using synthetic data. Keep secrets and personal information out of public issues.
 
-Report reproducible behavior, the affected version, and a minimal example using synthetic data. Never include real credentials, identity documents, or customer exports. Maintainers should remove accidentally published material and rotate any exposed credentials through their issuing service; removing a file alone does not revoke a credential.
+The review focus includes storage validation, dependency security, export content, and static-hosting configuration. Maintainers should handle accidental disclosures privately and revoke exposed credentials through their issuing service.

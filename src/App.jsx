@@ -38,7 +38,7 @@ const routes = [
   ["/assessment", "探索評估", "Explore"],
   ["/readiness", "準備度自查", "Readiness"],
   ["/qa", "知識手冊", "Field notes"],
-  ["/staff", "演示工作台", "Workspace"],
+  ["/workspace", "規劃工作台", "Workspace"],
 ];
 const dimensionLabels = [
   text("方向", "Direction"),
@@ -89,7 +89,7 @@ function ExportButton({ data, filename, label, t }) {
         ref={dialog}
         aria-label={t("匯出 JSON", "Export JSON")}
       >
-        <h2>{t("你的演示資料", "Your demo data")}</h2>
+        <h2>{t("你的規劃資料", "Your planning data")}</h2>
         <p>
           {t(
             "下載 JSON，或直接選取並複製下方內容。部分內嵌瀏覽器會阻擋檔案下載。",
@@ -129,8 +129,7 @@ export default function App() {
   );
   const [notice, setNotice] = useState("");
   const [epoch, setEpoch] = useState(0);
-  const rawPath = window.location.pathname.replace(/\/$/, "") || "/";
-  const path = rawPath === "/renewal-check" ? "/readiness" : rawPath;
+  const path = window.location.pathname.replace(/\/$/, "") || "/";
   const t = (tc, en) => (lang === "tc" ? tc : en);
   const pick = (value) => value[lang];
   const href = (route) => localizedPath(route, lang);
@@ -163,8 +162,8 @@ export default function App() {
     setNotice(
       cleared
         ? t(
-            "本機演示資料與儲存的語言偏好已清除。",
-            "Local demo data and the saved language preference have been cleared.",
+            "本機規劃資料與儲存的語言偏好已清除。",
+            "Local planning data and the saved language preference have been cleared.",
           )
         : t(
             "本頁已重設；瀏覽器拒絕刪除儲存，請在網站設定中清除資料。",
@@ -188,8 +187,8 @@ export default function App() {
       <div className="demo-bar">
         <span className="status-dot" />
         {t(
-          "獨立開源作品 · 虛構情境 · 所有操作僅在本機演示",
-          "INDEPENDENT OPEN-SOURCE DEMO · FICTIONAL SCENARIOS · LOCAL ONLY",
+          "開源成長規劃 · 中英雙語 · 選擇、行動、回顧",
+          "OPEN-SOURCE PLANNING · BILINGUAL · CHOOSE, ACT, REFLECT",
         )}
       </div>
       <header className="site-header">
@@ -211,7 +210,7 @@ export default function App() {
               aria-current={path === route ? "page" : undefined}
             >
               {t(tc, en)}
-              {route === "/staff" && <ArrowUpRight size={14} />}
+              {route === "/workspace" && <ArrowUpRight size={14} />}
             </a>
           ))}
         </nav>
@@ -244,11 +243,11 @@ export default function App() {
           <Home {...context} />
         ) : path === "/assessment" ? (
           <Assessment {...context} />
-        ) : ["/readiness", "/renewal-check"].includes(path) ? (
+        ) : path === "/readiness" ? (
           <Readiness {...context} />
         ) : path === "/qa" ? (
           <Knowledge {...context} />
-        ) : path === "/staff" ? (
+        ) : path === "/workspace" ? (
           <Workspace {...context} />
         ) : (
           <section className="page-wrap">
@@ -277,7 +276,7 @@ export default function App() {
             {t("資料與私隱", "Data and privacy")}
           </a>
           <button onClick={clear}>
-            {t("清除演示資料", "Clear demo data")}
+            {t("清除規劃資料", "Clear planning data")}
           </button>
           <span>© 2026 Open Pathway contributors · MIT</span>
         </div>
@@ -384,8 +383,8 @@ function Home({ t, pick, href }) {
           </h2>
           <p>
             {t(
-              "Open Pathway 是獨立的前端作品，以虛構規劃情境探索清晰、友善的數位體驗。你可以完整走過問卷、閱讀結果，再到工作台回顧。",
-              "Open Pathway is an independent frontend project exploring thoughtful digital experiences through fictional planning scenarios. Walk through a questionnaire, read your results, and reflect in a local workspace.",
+              "Open Pathway 把探索、計劃與回顧連在一起。從學習新技能到完成個人作品，透過幾個簡單問題梳理方向，再到工作台整理每一步的進展。",
+              "Open Pathway connects exploration, planning, and reflection. Whether you are learning a skill or creating a project, use a few guided questions to find a direction and track your next steps in the workspace.",
             )}
           </p>
         </div>
@@ -409,8 +408,8 @@ function Home({ t, pick, href }) {
               ShieldCheck,
               "讓資料留在身邊",
               "Keep your data close",
-              "只有預設選項，沒有姓名、聯絡資料或上傳文件。",
-              "Preset choices only, without names, contact details, or uploads.",
+              "用清楚的選項整理想法，讓計劃保存在自己的瀏覽器。",
+              "Organize your thoughts with clear choices and keep your plan in your own browser.",
             ],
           ].map(([Icon, tc, en, descTc, descEn], i) => (
             <article key={en}>
@@ -426,7 +425,7 @@ function Home({ t, pick, href }) {
         <div className="section-heading">
           <p className="eyebrow">02 / A CONTINUOUS JOURNEY</p>
           <h2>
-            {t("不是一次答案，是持續的對話。", "A continuing conversation.")}
+            {t("讓每次回顧，成為新的起點。", "A continuing conversation.")}
           </h2>
         </div>
         <div className="journey-steps">
@@ -552,12 +551,12 @@ function Assessment({ t, pick, href, session, update }) {
   if (complete && plan)
     return (
       <section className="page-wrap narrow">
-        <p className="eyebrow">YOUR NEXT CHAPTER / DEMO REPORT</p>
+        <p className="eyebrow">YOUR NEXT CHAPTER / ACTION PLAN</p>
         <h1>{t("你的起步計劃", "Your first-step plan")}</h1>
         <p className="page-intro">
           {t(
-            "這不是能力評分，而是一份由你的選擇整理出的行動筆記。",
-            "A practical note based on your choices, rather than a capability score.",
+            "將你的方向、重點與節奏，整理成一份隨時可以回顧的行動筆記。",
+            "A practical note bringing your direction, focus, and pace together for future reflection.",
           )}
         </p>
         <article className="result-card">
@@ -586,10 +585,7 @@ function Assessment({ t, pick, href, session, update }) {
         </dl>
         <p className="small-note">
           {t("規則版本", "Rule version")}: {plan.version} ·{" "}
-          {t(
-            "教學演示，非專業建議",
-            "Educational demo, not professional advice",
-          )}
+          {t("依照本次選擇生成", "Based on your current choices")}
         </p>
         <div className="action-row">
           <button
@@ -605,7 +601,7 @@ function Assessment({ t, pick, href, session, update }) {
               : t("加入本機工作台", "Add to local workspace")}
           </button>
           <ExportButton
-            data={{ demo: true, ...plan }}
+            data={{ app: "open-pathway", ...plan }}
             filename="open-pathway-plan.json"
             label={t("匯出計劃", "Export plan")}
             t={t}
@@ -622,7 +618,7 @@ function Assessment({ t, pick, href, session, update }) {
           >
             {t("修改答案", "Edit answers")}
           </button>
-          <a className="text-link" href={href("/staff")}>
+          <a className="text-link" href={href("/workspace")}>
             {t("前往工作台", "Open workspace")}
             <ArrowUpRight size={18} />
           </a>
@@ -705,8 +701,8 @@ function Assessment({ t, pick, href, session, update }) {
       <p className="privacy-note">
         <ShieldCheck size={18} />
         {t(
-          "草稿只保存於這個分頁。請使用演示選項，無需提供個人資料。",
-          "Drafts stay in this tab. Use demo choices; no personal information is needed.",
+          "草稿保存在這個分頁。隨時返回修改，讓計劃貼合自己的節奏。",
+          "Your draft stays in this tab. Return to refine it at your own pace.",
         )}
       </p>
     </section>
@@ -730,8 +726,8 @@ function Readiness({ t, pick, href, session, update }) {
       <h1>{t("為下一步，整理好行囊。", "Get ready for your next step.")}</h1>
       <p className="page-intro">
         {t(
-          "八個小問題，從五個面向看見準備狀態。這是簡單的規劃練習，沒有資格或專業判定。",
-          "Eight prompts, five perspectives. A simple planning exercise with no eligibility or professional judgments.",
+          "用八個小問題，從方向、時間、工具、回饋與心態五個面向，整理行動前的準備事項。",
+          "Eight prompts help you prepare for action across direction, time, tools, feedback, and mindset.",
         )}
       </p>
       {show && result ? (
@@ -742,7 +738,7 @@ function Readiness({ t, pick, href, session, update }) {
                 {result.score}
                 <small>/100</small>
               </span>
-              <p>{t("本次演示準備度", "Demo readiness score")}</p>
+              <p>{t("本次準備度", "Readiness score")}</p>
             </div>
             <div className="dimension-list">
               {result.dimensions.map((value, i) => (
@@ -765,8 +761,8 @@ function Readiness({ t, pick, href, session, update }) {
             ) : (
               <li>
                 {t(
-                  "這個演示情境已完成所有準備項目。試著執行第一步，再回來回顧。",
-                  "This demo scenario covers every preparation item. Try the first step, then return to reflect.",
+                  "所有準備項目都已就緒。試著執行第一步，再回來回顧。",
+                  "Every preparation item is ready. Try the first step, then return to reflect.",
                 )}
               </li>
             )}
@@ -775,7 +771,7 @@ function Readiness({ t, pick, href, session, update }) {
             <button className="button secondary" onClick={() => setShow(false)}>
               {t("重新調整", "Revise choices")}
             </button>
-            <a className="button" href={href("/staff")}>
+            <a className="button" href={href("/workspace")}>
               {t("前往本機工作台", "Open local workspace")}
               <ArrowRight size={18} />
             </a>
@@ -848,8 +844,8 @@ function Knowledge({ t, pick }) {
       <h1>{t("讓每一個疑問，都有落腳處。", "A place for your questions.")}</h1>
       <p className="page-intro">
         {t(
-          "選擇一個問題，閱讀本項目的編寫筆記。這是固定內容問答，沒有生成式 AI 或外部訊息傳送。",
-          "Choose a question to read a project note. These are curated answers, without generative AI or external messaging.",
+          "從起步方法到工作台用法，選擇一個問題，找到下一步需要的說明。",
+          "From first-step ideas to workspace tips, choose a question and find guidance for what comes next.",
         )}
       </p>
       <div className="knowledge-layout">
@@ -899,9 +895,9 @@ function Workspace({ t, pick, href, session, update }) {
   ];
   const rows = [
     {
-      id: "DEMO-001",
+      id: "EXAMPLE-001",
       title: text("每週閱讀小計劃", "A weekly reading practice"),
-      type: text("內建虛構示例", "Fictional built-in example"),
+      type: text("內建範例", "Built-in example"),
       status: sampleStatus,
     },
     ...(session.savedPlan
@@ -909,7 +905,7 @@ function Workspace({ t, pick, href, session, update }) {
           {
             id: "LOCAL-PLAN",
             title: text("我的起步計劃", "My first-step plan"),
-            type: text("本機演示結果", "Local demo result"),
+            type: text("本機規劃記錄", "Local planning record"),
             status: session.status,
           },
         ]
@@ -919,7 +915,7 @@ function Workspace({ t, pick, href, session, update }) {
           {
             id: "LOCAL-CHECK",
             title: text("我的準備度", "My readiness"),
-            type: text("本機演示結果", "Local demo result"),
+            type: text("本機規劃記錄", "Local planning record"),
             status: "done",
             score: readinessResult(session.readiness).score,
           },
@@ -931,7 +927,7 @@ function Workspace({ t, pick, href, session, update }) {
   );
   return (
     <section className="page-wrap">
-      <p className="eyebrow">WORKSPACE / LOCAL DEMO</p>
+      <p className="eyebrow">WORKSPACE / YOUR PROGRESS</p>
       <div className="workspace-heading">
         <div>
           <h1>
@@ -939,20 +935,20 @@ function Workspace({ t, pick, href, session, update }) {
           </h1>
           <p className="page-intro">
             {t(
-              "這裡只有虛構示例與你的本機演示結果，無需帳號。",
-              "Fictional examples and your local demo results. No account required.",
+              "在這裡整理起步計劃與準備度結果，更新狀態，回顧每一次進展。",
+              "Bring your plans and readiness results together, update their status, and reflect on your progress.",
             )}
           </p>
         </div>
         <ExportButton
           data={{
-            demo: true,
+            app: "open-pathway",
             records: rows,
             plan: session.savedPlan,
             readiness: session.readiness,
           }}
           filename="open-pathway-workspace.json"
-          label={t("匯出演示資料", "Export demo data")}
+          label={t("匯出規劃資料", "Export planning data")}
           t={t}
         />
       </div>
@@ -1010,7 +1006,7 @@ function Workspace({ t, pick, href, session, update }) {
                   <select
                     value={row.status}
                     onChange={(e) =>
-                      row.id === "DEMO-001"
+                      row.id === "EXAMPLE-001"
                         ? setSampleStatus(e.target.value)
                         : update({ status: e.target.value })
                     }
@@ -1040,8 +1036,8 @@ function Workspace({ t, pick, href, session, update }) {
       {!session.savedPlan && (
         <a className="text-link" href={href("/assessment")}>
           {t(
-            "完成一次評估，加入自己的演示計劃",
-            "Complete an assessment to add your own demo plan",
+            "完成一次評估，加入自己的起步計劃",
+            "Complete an assessment to add your first-step plan",
           )}
           <ArrowRight size={18} />
         </a>

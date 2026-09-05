@@ -20,4 +20,4 @@ private/
 tmp/
 output/
 qa-artifacts/
-.staff-access*
+.credentials*
